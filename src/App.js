@@ -7,6 +7,8 @@ import './App.css';
 type Props = {}
 
 class App extends Component<Props> {
+  state = {}
+
   render() {
     return (
       <div className="app">
