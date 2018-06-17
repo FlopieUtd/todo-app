@@ -1,18 +1,16 @@
-// @flow
-
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import './App.css';
+import AddTodo from './containers/AddTodo';
+import TodoListContainer from './containers/TodoListContainer';
 
-type Props = {}
-
-class App extends Component<Props> {
+class App extends Component {
   state = {}
 
   render() {
     return (
       <div className="app">
-        <p>Hello world!</p>
+        <AddTodo />
+        <TodoListContainer />
       </div>
     );
   }
