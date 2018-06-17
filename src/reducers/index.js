@@ -34,9 +34,7 @@ function todos(state = [], action) {
       return state.map((todo) => {
         if (todo.id === action.id) {
           return Object.assign({}, todo, {
-            id: action.id,
             text: action.text,
-            done: false,
           });
         }
         return todo;

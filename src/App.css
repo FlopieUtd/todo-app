@@ -8,7 +8,7 @@
 
 .app {
   width: 100%;
-  max-width: 540px;
+  max-width: 640px;
   background: white;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0,0,0,.05);
@@ -32,11 +32,14 @@
 
 .todo {
   list-style: none;
-  display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.todo__content {
+  display: flex;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
 .label {
@@ -85,4 +88,31 @@
 
 .todo__update-submit {
   display: none
+}
+
+.slide {
+	padding: 1rem;
+}
+
+.slide-enter {
+  opacity: 0.01;
+  max-height: 0;
+  overflow: hidden;
+}
+.slide-enter-active {
+  opacity: 1;
+  max-height: 64px;
+  overflow: hidden;
+  transition: max-height 250ms ease-in-out, opacity 350ms ease-in-out 150ms;
+}
+.slide-exit {
+  opacity: 1;
+  max-height: 64px;
+  overflow: hidden;
+}
+.slide-exit-active {
+  opacity: 0.01;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 250ms ease-in-out, opacity 250ms ease-in-out;
 }
