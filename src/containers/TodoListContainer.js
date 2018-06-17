@@ -5,7 +5,7 @@ import TodoList from './../components/TodoList';
 const mapStateToProps = state => ({ todos: state.todos });
 
 const mapDispatchToProps = dispatch => ({
-  onTodoClick: (id) => {
+  toggleTodo: (id) => {
     dispatch(toggleTodo(id));
   },
 });
