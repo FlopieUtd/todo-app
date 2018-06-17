@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import {
   ADD_TODO,
   TOGGLE_TODO,
+  REMOVE_TODO,
 } from '../actions/index';
 
 function todos(state = [], action) {
@@ -26,6 +27,8 @@ function todos(state = [], action) {
         }
         return todo;
       });
+    case REMOVE_TODO:
+      return state.filter(todo => todo.id !== action.id);
     default:
       return state;
   }

@@ -1,11 +1,16 @@
 import React from 'react';
 
-const Todo = ({ onClick, done, text }) => (
+const Todo = ({
+  onToggle,
+  onRemove,
+  done,
+  text,
+}) => (
   <li>
-    <input
-      type="checkbox"
-      onChange={onClick}
-    />
+    Check:
+    <input type="checkbox" onChange={onToggle} />
+    Remove:
+    <input type="checkbox" onChange={onRemove} />
     {text} {done ? 'done' : 'not done'}
   </li>
 );
