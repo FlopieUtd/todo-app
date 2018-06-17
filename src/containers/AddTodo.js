@@ -22,6 +22,7 @@ const AddTodo = ({ dispatch }) => {
           ref={(node) => { input = node; }}
           placeholder="New todo..."
           className="add-todo__input"
+          title="Add a new todo"
         />
         <button type="submit" className="add-todo__submit">
           Add

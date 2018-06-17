@@ -8,7 +8,7 @@
 
 .app {
   width: 100%;
-  max-width: 640px;
+  max-width: 540px;
   background: white;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0,0,0,.05);
@@ -45,7 +45,7 @@
   align-items: center;
 }
 
-.label--toggle, .todo__text {
+.label--toggle, .todo__update-form {
   margin-right: 20px;
 }
 
@@ -53,11 +53,7 @@
   display: none;
 }
 
-.todo__text {
-  flex: 0 1 100%
-}
-
-.todo--done {
+.todo--done .todo__update-input {
   text-decoration: line-through;
 }
 
@@ -70,9 +66,23 @@
   height: 20px;
 }
 
-.todo--done .todo__text, .todo--done .todo__toggle {
+.todo--done .todo__update-form, .todo--done .label--toggle {
   opacity: .3;
 }
 
+.todo__update-form {
+  flex: 0 1 100%;
+}
 
+.todo__update-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: Roboto, sans-serif;
+  font-size: 1.2rem;
+  color: #404040;
+}
 
+.todo__update-submit {
+  display: none
+}

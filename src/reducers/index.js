@@ -5,6 +5,7 @@ import {
   ADD_TODO,
   TOGGLE_TODO,
   REMOVE_TODO,
+  UPDATE_TODO,
 } from '../actions/index';
 
 function todos(state = [], action) {
@@ -29,6 +30,17 @@ function todos(state = [], action) {
       });
     case REMOVE_TODO:
       return state.filter(todo => todo.id !== action.id);
+    case UPDATE_TODO:
+      return state.map((todo) => {
+        if (todo.id === action.id) {
+          return Object.assign({}, todo, {
+            id: action.id,
+            text: action.text,
+            done: false,
+          });
+        }
+        return todo;
+      });
     default:
       return state;
   }

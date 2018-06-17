@@ -1,7 +1,12 @@
 import React from 'react';
 import Todo from './Todo';
 
-const TodoList = ({ todos, toggleTodo, removeTodo }) => (
+const TodoList = ({
+  todos,
+  toggleTodo,
+  removeTodo,
+  updateTodo,
+}) => (
   <ul>
     {todos.map(todo => (
       <Todo
@@ -9,6 +14,7 @@ const TodoList = ({ todos, toggleTodo, removeTodo }) => (
         {...todo}
         onToggle={() => toggleTodo(todo.id)}
         onRemove={() => removeTodo(todo.id)}
+        onUpdate={() => updateTodo(todo.text, todo.id)}
       />
     ))}
   </ul>
