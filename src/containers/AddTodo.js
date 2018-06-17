@@ -16,9 +16,14 @@ const AddTodo = ({ dispatch }) => {
           dispatch(addTodo(input.value, Date.now()));
           input.value = '';
         }}
+        className="add-todo__form"
       >
-        <input ref={(node) => { input = node; }} />
-        <button type="submit">
+        <input
+          ref={(node) => { input = node; }}
+          placeholder="New todo..."
+          className="add-todo__input"
+        />
+        <button type="submit" className="add-todo__submit">
           Add
         </button>
       </form>
