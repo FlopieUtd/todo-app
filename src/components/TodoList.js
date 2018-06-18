@@ -5,22 +5,24 @@ import Todo from './Todo';
 const TodoList = ({
   todos,
   toggleTodo,
-  removeTodo,
   updateTodo,
+  toggleRemovalPrompt,
+  removeTodo,
 }) => (
   <ul>
     <TransitionGroup className="todo-list">
       {todos.map(todo => (
         <CSSTransition
           key={todo.id}
-          timeout={{ exit: 250, enter: 500 }}
+          timeout={{ exit: 350, enter: 600 }}
           classNames="slide"
         >
           <Todo
             {...todo}
             onToggle={() => toggleTodo(todo.id)}
-            onRemove={() => removeTodo(todo.id)}
             onUpdate={() => updateTodo(todo.text, todo.id)}
+            onRemoveRequest={() => toggleRemovalPrompt(todo.id)}
+            onRemoveConfirm={() => removeTodo(todo.id)}
           />
         </CSSTransition>
       ))}

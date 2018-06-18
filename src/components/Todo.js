@@ -1,18 +1,23 @@
 import React from 'react';
+import TodoPrompt from './TodoPrompt';
 
 const Todo = ({
   onToggle,
-  onRemove,
   onUpdate,
+  onRemoveRequest,
   done,
   text,
   id,
+  prompt,
 }) => {
   let input;
   let submit;
 
   return (
     <li className={'todo ' + (done ? 'todo--done' : '')}>
+      {prompt ?
+        <TodoPrompt id={id} />
+        : null}
       <div className="todo__content">
         <label
           className="label label--toggle"
@@ -29,12 +34,12 @@ const Todo = ({
             <img
               src={require('../assets/icons/checked.svg')}
               alt="Toggle done"
-              className="todo__toggle-icon"
+              className="icon todo__toggle-icon"
             />
           : <img
             src={require('../assets/icons/unchecked.svg')}
             alt="Toggle done"
-            className="todo__toggle-icon"
+            className="icon todo__toggle-icon"
           />
           }
         </label>
@@ -71,13 +76,13 @@ const Todo = ({
           <input
             id={`remove-${id}`}
             type="checkbox"
-            onChange={onRemove}
+            onChange={onRemoveRequest}
             className="todo__remove"
           />
           <img
             src={require('../assets/icons/remove.svg')}
             alt="Remove"
-            className="todo__remove-icon"
+            className="icon todo__remove-icon"
           />
         </label>
       </div>

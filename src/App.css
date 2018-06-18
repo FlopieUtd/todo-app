@@ -13,7 +13,6 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0,0,0,.05);
   margin: 20px;
-  overflow: hidden;
 }
 
 .add-todo__input {
@@ -24,6 +23,8 @@
   width: 100%;
   font-family: Roboto;
   font-size: 1.2rem;
+  background: transparent;
+  text-overflow: ellipsis;
 }
 
 .add-todo__submit {
@@ -31,6 +32,7 @@
 }
 
 .todo {
+  position: relative;
   list-style: none;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0,0,0,.1);
@@ -64,9 +66,13 @@
   display: none;
 }
 
-.todo__remove-icon, .todo__toggle-icon {
+.icon {
   width: 20px;
   height: 20px;
+}
+
+.todo__update-form, .label--toggle {
+  transition: all .3s ease-out;
 }
 
 .todo--done .todo__update-form, .todo--done .label--toggle {
@@ -84,6 +90,8 @@
   font-family: Roboto, sans-serif;
   font-size: 1.2rem;
   color: #404040;
+  background: transparent;
+  text-overflow: ellipsis;
 }
 
 .todo__update-submit {
@@ -99,20 +107,75 @@
   max-height: 0;
   overflow: hidden;
 }
+
 .slide-enter-active {
   opacity: 1;
   max-height: 64px;
   overflow: hidden;
-  transition: max-height 250ms ease-in-out, opacity 350ms ease-in-out 150ms;
+  transition: max-height 250ms ease-out, opacity 450ms ease-out 150ms;
 }
+
 .slide-exit {
   opacity: 1;
   max-height: 64px;
   overflow: hidden;
 }
+
 .slide-exit-active {
   opacity: 0.01;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 250ms ease-in-out, opacity 250ms ease-in-out;
+  transition: max-height 350ms ease-out, opacity 350ms ease-out;
+}
+
+.todo-prompt {
+  position: absolute;
+  right: 0;
+  background: #404040;
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: white;
+  bottom: 72px;
+}
+
+.todo-prompt:after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #404040;
+  transform: rotate(45deg);
+  bottom: -6px;
+  right: 20px;
+}
+
+.todo-prompt__options {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.todo-prompt__options .icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#continue, #cancel {
+  display: none;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
 }

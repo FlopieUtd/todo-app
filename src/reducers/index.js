@@ -4,8 +4,9 @@ import { combineReducers } from 'redux';
 import {
   ADD_TODO,
   TOGGLE_TODO,
-  REMOVE_TODO,
   UPDATE_TODO,
+  TOGGLE_REMOVAL_PROMPT,
+  REMOVE_TODO,
 } from '../actions/index';
 
 function todos(state = [], action) {
@@ -17,6 +18,7 @@ function todos(state = [], action) {
           id: action.id,
           text: action.text,
           done: false,
+          prompt: false,
         },
       ];
     case TOGGLE_TODO:
@@ -24,6 +26,15 @@ function todos(state = [], action) {
         if (todo.id === action.id) {
           return Object.assign({}, todo, {
             done: !todo.done,
+          });
+        }
+        return todo;
+      });
+    case TOGGLE_REMOVAL_PROMPT:
+      return state.map((todo) => {
+        if (todo.id === action.id) {
+          return Object.assign({}, todo, {
+            prompt: !todo.prompt,
           });
         }
         return todo;
