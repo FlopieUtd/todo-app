@@ -1,5 +1,67 @@
 import React from 'react';
-import TodoPrompt from './TodoPrompt';
+import injectSheet from 'react-jss';
+import TodoPrompt from '../containers/TodoPrompt';
+
+const styles = {
+  todo: {
+    position: 'relative',
+    listStyle: 'none',
+    justifyContent: 'space-between',
+    borderBottom: '1px solid rgba(0,0,0,.1)',
+  },
+  todoDone: {
+    extend: 'todo',
+    '& $todoUpdateInput': {
+      textDecoration: 'line-through',
+    },
+    '& $todoUpdateForm, & $labelToggle': {
+      opacity: '.3',
+    },
+  },
+  todoContent: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '20px',
+  },
+  label: {
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  labelToggle: {
+    extend: 'label',
+    transition: 'all .3s ease-out',
+    marginRight: '20px',
+  },
+  todoUpdateForm: {
+    transition: 'all .3s ease-out',
+    marginRight: '20px',
+    flex: '0 1 100%',
+  },
+  todoUpdateInput: {
+    width: '100%',
+    border: 'none',
+    outline: 'none',
+    fontFamily: 'Roboto, sans-serif',
+    fontSize: '1.2rem',
+    color: '#404040',
+    background: 'transparent',
+    textOverflow: 'ellipsis',
+  },
+  todoUpdateSubmit: {
+    display: 'none',
+  },
+  icon: {
+    width: '20px',
+    height: '20px',
+  },
+  toggleTodo: {
+    display: 'none',
+  },
+  removeTodo: {
+    display: 'none',
+  },
+};
 
 const Todo = ({
   onToggle,
@@ -9,18 +71,19 @@ const Todo = ({
   text,
   id,
   prompt,
+  classes,
 }) => {
   let input;
   let submit;
 
   return (
-    <li className={'todo ' + (done ? 'todo--done' : '')}>
+    <li className={(done ? classes.todoDone : classes.todo)}>
       {prompt ?
         <TodoPrompt id={id} />
         : null}
-      <div className="todo__content">
+      <div className={classes.todoContent}>
         <label
-          className="label label--toggle"
+          className={classes.labelToggle}
           htmlFor={`toggle-${id}`}
           title="Toggle done"
         >
@@ -28,23 +91,23 @@ const Todo = ({
             id={`toggle-${id}`}
             type="checkbox"
             onChange={onToggle}
-            className="todo__toggle"
+            className={classes.toggleTodo}
           />
           {done ?
             <img
               src={require('../assets/icons/checked.svg')}
               alt="Toggle done"
-              className="icon todo__toggle-icon"
+              className={classes.icon}
             />
           : <img
             src={require('../assets/icons/unchecked.svg')}
             alt="Toggle done"
-            className="icon todo__toggle-icon"
+            className={classes.icon}
           />
           }
         </label>
         <form
-          className="todo__update-form"
+          className={classes.todoUpdateForm}
           onSubmit={(e) => {
             e.preventDefault();
             if (input.value.trim() === '') {
@@ -57,7 +120,7 @@ const Todo = ({
           <input
             type="text"
             defaultValue={text}
-            className="todo__update-input"
+            className={classes.todoUpdateInput}
             ref={(node) => { input = node; }}
             onBlur={() => { submit.click(); }}
             title="Edit todo"
@@ -65,11 +128,11 @@ const Todo = ({
           <button
             type="submit"
             ref={(node) => { submit = node; }}
-            className="todo__update-submit"
+            className={classes.todoUpdateSubmit}
           />
         </form>
         <label
-          className="label label--remove"
+          className={classes.label}
           htmlFor={`remove-${id}`}
           title="Remove"
         >
@@ -77,12 +140,12 @@ const Todo = ({
             id={`remove-${id}`}
             type="checkbox"
             onChange={onRemoveRequest}
-            className="todo__remove"
+            className={classes.removeTodo}
           />
           <img
             src={require('../assets/icons/remove.svg')}
             alt="Remove"
-            className="icon todo__remove-icon"
+            className={classes.icon}
           />
         </label>
       </div>
@@ -90,4 +153,6 @@ const Todo = ({
   );
 };
 
-export default Todo;
+const StyledTodo = injectSheet(styles)(Todo);
+
+export default StyledTodo;

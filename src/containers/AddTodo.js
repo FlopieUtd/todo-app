@@ -1,8 +1,26 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
 
-const AddTodo = ({ dispatch }) => {
+const styles = {
+  addTodoInput: {
+    padding: '20px',
+    border: 'none',
+    outline: 'none',
+    borderBottom: '1px solid rgba(0,0,0,.1)',
+    width: '100%',
+    fontFamily: 'Roboto',
+    fontSize: '1.2rem',
+    background: 'transparent',
+    textOverflow: 'ellipsis',
+  },
+  addTodoSubmit: {
+    display: 'none',
+  },
+};
+
+const AddTodo = ({ dispatch, classes }) => {
   let input;
 
   return (
@@ -16,15 +34,14 @@ const AddTodo = ({ dispatch }) => {
           dispatch(addTodo(input.value, Date.now()));
           input.value = '';
         }}
-        className="add-todo__form"
       >
         <input
           ref={(node) => { input = node; }}
           placeholder="New todo..."
-          className="add-todo__input"
+          className={classes.addTodoInput}
           title="Add a new todo"
         />
-        <button type="submit" className="add-todo__submit">
+        <button type="submit" className={classes.addTodoSubmit}>
           Add
         </button>
       </form>
@@ -32,4 +49,6 @@ const AddTodo = ({ dispatch }) => {
   );
 };
 
-export default connect()(AddTodo);
+const StyledAddTodo = injectSheet(styles)(AddTodo);
+
+export default connect()(StyledAddTodo);
