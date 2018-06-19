@@ -33,6 +33,8 @@ const styles = {
   icon: {
     marginLeft: '10px',
     cursor: 'pointer',
+    width: '20px',
+    height: '20px',
   },
   displayNone: {
     display: 'none',
