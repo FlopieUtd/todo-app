@@ -29,7 +29,7 @@ export function todos(state: Array<Object> = [], action: any) {
         },
       ];
     case TOGGLE_TODO:
-      return state.map((todo): Array<any> => {
+      return state.map((todo) => {
         if (todo.id === action.id) {
           return { ...todo, done: !todo.done };
         }
