@@ -1,6 +1,9 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 import TodoPrompt from '../containers/TodoPrompt';
+import checkedSVG from '../assets/icons/checked.svg';
+import uncheckedSVG from '../assets/icons/unchecked.svg';
+import removeSVG from '../assets/icons/remove.svg';
 
 const styles = {
   todo: {
@@ -95,12 +98,12 @@ const Todo = ({
           />
           {done ?
             <img
-              src={require('../assets/icons/checked.svg')}
+              src={checkedSVG}
               alt="Toggle done"
               className={classes.icon}
             />
           : <img
-            src={require('../assets/icons/unchecked.svg')}
+            src={uncheckedSVG}
             alt="Toggle done"
             className={classes.icon}
           />
@@ -143,7 +146,7 @@ const Todo = ({
             className={classes.removeTodo}
           />
           <img
-            src={require('../assets/icons/remove.svg')}
+            src={removeSVG}
             alt="Remove"
             className={classes.icon}
           />

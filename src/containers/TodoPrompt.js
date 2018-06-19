@@ -2,6 +2,8 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 import { removeTodo, toggleRemovalPrompt } from '../actions';
+import continueSVG from '../assets/icons/continue.svg';
+import cancelSVG from '../assets/icons/cancel.svg';
 
 const styles = {
   todoPrompt: {
@@ -44,7 +46,7 @@ const TodoPrompt = ({ dispatch, id, classes }) => (
       <label htmlFor="continue">
         <button id="continue" className={classes.displayNone} onClick={() => { dispatch(removeTodo(id)); }} />
         <img
-          src={require('../assets/icons/continue.svg')}
+          src={continueSVG}
           alt="Yes"
           title="Yes"
           className={classes.icon}
@@ -53,7 +55,7 @@ const TodoPrompt = ({ dispatch, id, classes }) => (
       <label htmlFor="cancel">
         <button id="cancel" className={classes.displayNone} onClick={() => { dispatch(toggleRemovalPrompt(id)); }} />
         <img
-          src={require('../assets/icons/cancel.svg')}
+          src={cancelSVG}
           alt="No"
           title="No"
           className={classes.icon}
